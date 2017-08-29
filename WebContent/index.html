@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Guess the number - Group 4</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	<h1>Welcome to Guessing the Number game</h1>
+	<form action="MainServlet" method="get">
+		Select song: <input type="file" name="file_path">
+		<input type="submit" name="play_music" value="PlayMusic" text="Play Music">
+		<input type="submit" name="stop_music" value="StopMusic" text="Stop Music"><br><br>
+		
+		<label>Enter your guess: <input type="text" name="user_number"></label>
+		<input type="submit" name="check" value="Check" text="Check">
+	</form>
+	<audio controls name="audio">
+  <source src="http://192.168.0.17:8081/Group4_Proj2/MusicServlet" type="audio/mpeg" loop="true">
+Your browser does not support the audio element.
+</audio>
+
+<script type="text/javascript">
+function setCookie(c_name,value,exdays)
+{
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+    document.cookie=c_name + "=" + c_value;
+}
+
+function getCookie(c_name)
+{
+    var i,x,y,ARRcookies=document.cookie.split(";");
+    for (i=0;i<ARRcookies.length;i++)
+    {
+      x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+      y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+      x=x.replace(/^\s+|\s+$/g,"");
+      if (x==c_name)
+        {
+        return unescape(y);
+        }
+      }
+}
+
+var song = document.getElementsByName('audio')[0];
+var played = false;
+var tillPlayed = getCookie('timePlayed');
+function update()
+{
+    if(!played){
+        if(tillPlayed){
+        song.currentTime = tillPlayed;
+        song.play();
+        played = true;
+        }
+        else {
+                song.play();
+               played = true;
+        }
+    }
+
+    else {
+    setCookie('timePlayed', song.currentTime);
+    }
+}
+setInterval(update,1000);
+
+document.onbeforeunload=update();
+
+</script>
+
+</body>
+</html>

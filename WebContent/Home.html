@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script>
+$(document).ready(function(){
+	var table = document.getElementById("gameTable");
+	var password;
+	var pass = [];
+    if (table != null) {
+        for (var i = 0; i < table.rows.length; i++) {
+            for (var j = 0; j < table.rows[i].cells.length; j++)
+            table.rows[i].cells[j].onclick = function () {
+                alert(this.innerHTML);
+                var no = this.innerHTML;
+                pass[i] = no;
+                //password = StringBuilder().append(password).append(no).toString();
+              //  document.getElementById("lb").value = password;
+                var guess = document.getElementsByName("t1")[0];
+				guess.value = guess.value + no;
+            }
+        }
+    }
+});
+    </script>
+</head>
+<body>
+<table id="home_layout" border="1" >
+	<tr>
+		<td colspan="3"><img src="Capture.PNG" alt="404-image not found" height=270 width=750></td>
+		<td><img src="Capture-1.PNG" alt="404-image not found" height=270 width=270></td>
+	</tr>
+	<tr>
+		<form id="login" action="" method="">
+			<td align="center">
+				<label for="user_name">Login<br>
+				<input type="text" id="user_name" /></label>
+				<input type="text" name="t1">
+			</td>
+			<td align="center">
+				<label>Password</label><br>
+				<input type="password">
+			</td>
+			<td colspan="2" align="center">
+				<input type="submit" value="Click here to register" style="height:50px;width:300px" />
+			</td>
+		</form>
+	</tr>
+	<tr>
+		<td>
+			<a href="GGGame.jsp">
+				<img src="Capture-2.PNG" alt="404-image not found" height=200 width=320>
+			</a>
+		</td>
+		<td>
+			<img src="Capture-5.PNG" alt="404-image not found" height=200 width=190>
+		</td>
+		<td>
+			<img src="Capture-6.PNG" alt="404-image not found" height=200 width=190>
+		</td>
+		<td>
+			<img src="Capture-3.PNG" alt="404-image not found" height=200 width=250>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
